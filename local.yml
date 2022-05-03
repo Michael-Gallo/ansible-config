@@ -1,12 +1,16 @@
 ---
-- hosts: localhost
+- name: Gathering facts from localhost
+  hosts: localhost
+  gather_facts: yes
   connection: local
   become: true
 
+
   tasks:
-  - name: install packages
-    package:
-      name:
-        - htop
-        - tmux
-        - vim-nox
+    - name: Print OS
+      debug: var=ansible_distribution
+
+    - name: Update arch cache
+      pacman: update_cache=yes
+      changed_when: False
+      when: ansible_distribution == "Archlinux"
