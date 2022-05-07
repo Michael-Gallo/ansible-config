@@ -1,6 +1,5 @@
 ---
-- hosts: localhost
-  connection: local
+- hosts: all
   become: true
   pre_tasks:
     - name: pre-run | update package cache (arch)
