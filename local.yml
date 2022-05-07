@@ -147,9 +147,6 @@
     - name: Install gaming flatpaks
       flatpak:
         name: 
-          - net.cozic.joplin_desktop
-          - com.discordapp.Discord
           - org.freedesktop.Platform.VulkanLayer.MangoHud
-          - com.skype.Client
         state: present
 
