@@ -33,6 +33,7 @@
           - python-pynvim
           - ranger
           - rsync
+          - openssh
           - wget
           - yadm
           - zsh
@@ -61,6 +62,30 @@
           - otf-fira-mono
           - otf-font-awesome
 
+    - name: Add the flathub flatpak repository remote to the user installation
+      flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+        method: user
+
+    - name: Install flatpaks
+      flatpak:
+        name: 
+          - net.cozic.joplin_desktop
+          - com.discordapp.Discord
+          - com.skype.Client
+        state: present
+
+    - name: enable ssh
+      service:
+        name: sshd
+        status: started
+
+- hosts: gamer
+  connection: local
+  become: true
+  tasks:
     - name: Installing gaming related packages and drivers
       package:
         state: latest
@@ -119,14 +144,8 @@
           - mesa
       when: ansible_distribution == "Archlinux"
 
-    - name: Add the flathub flatpak repository remote to the user installation
-      flatpak_remote:
-        name: flathub
-        state: present
-        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-        method: user
 
-    - name: Install flatpaks
+    - name: Install gaming flatpaks
       flatpak:
         name: 
           - net.cozic.joplin_desktop
