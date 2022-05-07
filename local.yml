@@ -89,7 +89,7 @@
         state: started
         enabled: yes
 
-  - hosts: gamer
-    become: true
-    roles:
-      - gamer
+- hosts: gamer
+  become: true
+  roles:
+    - gamer
