@@ -80,7 +80,8 @@
     - name: enable ssh
       service:
         name: sshd
-        state: enabled
+        state: started
+        enabled: yes
 
 - hosts: gamer
   connection: local
