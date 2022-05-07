@@ -14,6 +14,18 @@
       changed_when: False
       when: ansible_distribution in ["Debian", "Ubuntu"]
 
+    - name: Ensure flatpak is installed
+      tags: always
+      package:
+        state: latest
+        name: flatpak
+
+    - name: Ensure flathub is active
+      flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
   tasks:
     - name: Installing utility packages
       package:
@@ -61,12 +73,7 @@
           - otf-fira-mono
           - otf-font-awesome
 
-    - name: Add the flathub flatpak repository remote to the user installation
-      flatpak_remote:
-        name: flathub
-        state: present
-        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-        method: user
+
 
     - name: Install flatpaks
       flatpak:
@@ -143,10 +150,4 @@
           - mesa
       when: ansible_distribution == "Archlinux"
 
-
-    - name: Install gaming flatpaks
-      flatpak:
-        name: 
-          - org.freedesktop.Platform.VulkanLayer.MangoHud
-        state: present
 
