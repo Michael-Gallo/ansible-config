@@ -84,7 +84,6 @@
         enabled: yes
 
 - hosts: gamer
-  connection: local
   become: true
   tasks:
     - name: Installing gaming related packages and drivers
