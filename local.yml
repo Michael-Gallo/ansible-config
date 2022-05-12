@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: localhost
   become: true
   pre_tasks:
     - name: pre-run | update package cache (arch)
