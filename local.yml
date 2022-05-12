@@ -66,6 +66,7 @@
         state: latest
         name:
           - autojump
+          - cargo
           - fzf
           - openssh
           - neovim
@@ -152,3 +153,8 @@
         repo: https://github.com/pyenv/pyenv.git
         dest: ~/.pyenv
         update: yes
+
+    - name: install exa
+      cargo:
+        name: exa
+        state: latest
