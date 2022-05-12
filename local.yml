@@ -112,6 +112,12 @@
         state: started
         enabled: yes
 
+
+    - name: Ensure shell is zsh
+      user:
+        name: "{{  ansible_user_id  }}"
+        shell: /bin/zsh
+
 - hosts: gamer
   become: true
   roles:
