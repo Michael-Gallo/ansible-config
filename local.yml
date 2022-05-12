@@ -28,11 +28,15 @@
         state: present
         flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 
-    - name: Ensure RPM Fusion is active (fedora)
+    - name: Ensure RPM Fusion (Free) is active (fedora)
         dnf:
-          name: 
-            - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm
-            - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm
+          name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
+          state: present
+      when: ansible_distribution == 'Fedora'
+
+    - name: Ensure RPM Fusion (Nonfree) is active (fedora)
+        dnf:
+          name: "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm"
           state: present
       when: ansible_distribution == 'Fedora'
 
