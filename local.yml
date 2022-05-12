@@ -14,7 +14,8 @@
       tags: always
       apt: 
         update_cache: yes
-      changed_when: False when: ansible_distribution in ["Debian", "Ubuntu"]
+      changed_when: False 
+      when: ansible_distribution in ["Debian", "Ubuntu"]
 
     - name: Ensure flatpak is installed
       tags: always
