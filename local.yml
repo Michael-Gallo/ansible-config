@@ -114,7 +114,7 @@
 
 
 - name: set up zsh for user
-  hosts: localhost
+  hosts: all
   become: no
   vars:
     the_user: "{{ ansible_user_id }}"
