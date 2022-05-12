@@ -64,10 +64,13 @@
       package:
         state: latest
         name:
-          - git
-          - 
+          - openssh
+          - neovim
+          - python3-neovim
+          - python3-pip
+          - zsh
+      when: ansible_distribution == "Fedora"
 
-      when: ansible_distribution == "Archlinux"
     - name: Removing unwanted packages
       package:
         state: absent
