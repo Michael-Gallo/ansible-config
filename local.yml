@@ -112,12 +112,18 @@
         state: started
         enabled: yes
 
-
-    - name: Ensure shell is zsh
+    - name: set up zsh for user
+      hosts: localhost
       become: no
-      user:
-        name: "{{  ansible_user_id  }}"
-        shell: /bin/zsh
+      vars:
+        the_user: "{{ ansible_user_id }}"
+      tasks:
+        - name: change user shell to zsh 
+          become: yes
+          user:
+            name: "{{ the_user }}"
+            shell: /bin/zsh
+
 
 - hosts: gamer
   become: true
