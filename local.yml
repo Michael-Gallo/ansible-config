@@ -69,6 +69,7 @@
           - python3-neovim
           - python3-pip
           - zsh
+          - "https://download.opensuse.org/repositories/home:/TheLocehiliosan:/yadm/Fedora_35/noarch/yadm-3.2.1-73.1.noarch.rpm"
       when: ansible_distribution == "Fedora"
 
     - name: Removing unwanted packages
