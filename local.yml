@@ -13,8 +13,7 @@
     - name: pre-run | update package cache (debian, etc)
       tags: always
       apt: update_cache=yes
-      changed_when: False
-      when: ansible_distribution in ["Debian", "Ubuntu"]
+      changed_when: False when: ansible_distribution in ["Debian", "Ubuntu"]
 
     - name: Ensure flatpak is installed
       tags: always
@@ -112,6 +111,13 @@
         name: sshd
         state: started
         enabled: yes
+
+    - name: Clone yadm (fedora)
+      git:
+        repo: clone https://github.com/TheLocehiliosan/yadm.git 
+        dest: ~/.yadm-project
+        update: yes
+      when: ansible_distribution == "Fedora"
 
 
 - name: set up zsh for user
