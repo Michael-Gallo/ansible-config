@@ -65,10 +65,14 @@
       package:
         state: latest
         name:
+          - autojump
+          - fzf
           - openssh
           - neovim
+          - nodejs
           - python3-neovim
           - python3-pip
+          - yarnpkg
           - zsh
       when: ansible_distribution == "Fedora"
 
