@@ -113,19 +113,14 @@
         state: started
         enabled: yes
 
-    - name: Clone yadm (fedora)
-      git:
-        repo: clone https://github.com/TheLocehiliosan/yadm.git 
-        dest: ~/.yadm-project
-        update: yes
-      when: ansible_distribution == "Fedora"
 
 
-- name: set up zsh for user
+- name: Tasks that need to be ran as user
   hosts: all
   become: no
   vars:
     the_user: "{{ ansible_user_id }}"
+    yadm_location: "/home/{{ the_user }}/.ansible-project"
   tasks:
     - name: change user shell to zsh 
       become: yes
@@ -133,3 +128,17 @@
         name: "{{ the_user }}"
         shell: /bin/zsh
 
+    - name: Clone yadm (fedora)
+      git:
+        repo: https://github.com/TheLocehiliosan/yadm.git 
+        dest: "{{ yadm_location }}"
+        update: yes
+      when: ansible_distribution == "Fedora"
+
+    - name: put yadm in bin
+      become: true
+      file:
+        src: "{{ yadm_location }}/yadm"
+        dest: /bin/yadm
+        state: link
+      when: ansible_distribution == "Fedora"
