@@ -146,3 +146,9 @@
         dest: /bin/yadm
         state: link
       when: ansible_distribution == "Fedora"
+
+    - name: install pyenv
+      git:
+        repo: https://github.com/pyenv/pyenv.git
+        dest: ~/.pyenv
+        update: yes
