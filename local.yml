@@ -155,6 +155,6 @@
         update: yes
 
     - name: install exa
-      cargo:
+      community.general.cargo:
         name: exa
         state: latest
