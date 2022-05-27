@@ -122,12 +122,14 @@
 
 
 
+
 - name: Tasks that need to be ran as user
   hosts: all
   become: no
   vars:
     the_user: "{{ ansible_user_id }}"
-    yadm_location: "/home/{{ the_user }}/.ansible-project"
+    user_home: "/home/{{ ansible_user_id }}"
+    yadm_location: "{{ user_home }}/.ansible-project"
   tasks:
     - name: change user shell to zsh 
       become: yes
@@ -160,3 +162,13 @@
       community.general.cargo:
         name: exa
         state: latest
+
+    - name: Ensure the vim autoload directory exists
+      file:
+        path: "$XDG_DATA_HOME/nvim/site/autoload/"
+        state: directory
+
+    - name: download vim-plug
+      get_url:
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: "$XDG_DATA_HOME/nvim/site/autoload/"
