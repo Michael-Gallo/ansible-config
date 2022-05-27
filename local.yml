@@ -54,6 +54,7 @@
           - neovim
           - python-pynvim
           - ranger
+          - ripgrep
           - rsync
           - openssh
           - wget
@@ -68,11 +69,12 @@
           - autojump
           - cargo
           - fzf
-          - openssh
           - neovim
           - nodejs
+          - openssh
           - python3-neovim
           - python3-pip
+          - ripgrep
           - yarnpkg
           - zsh
       when: ansible_distribution == "Fedora"
