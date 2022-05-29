@@ -47,6 +47,7 @@
           - chromium
           - curl
           - deluge
+          - fd
           - flatpak
           - git
           - htop
@@ -68,6 +69,7 @@
         name:
           - autojump
           - cargo
+          - fd-find
           - fzf
           - neovim
           - nodejs
