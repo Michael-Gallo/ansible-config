@@ -129,8 +129,7 @@
   hosts: all
   become: no
   vars:
-    the_user: "{{ ansible_user_id }}"
-    user_home: "/home/{{ ansible_user_id }}"
+    user_home: "/home/{{ user }}"
     yadm_location: "{{ user_home }}/.ansible-project"
   tasks:
     - name: change user shell to zsh 
