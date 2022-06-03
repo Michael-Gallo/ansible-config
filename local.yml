@@ -72,12 +72,14 @@
 
     - name: Installing utility packages (Fedora)
       package:
-        state: latest
+        state: present
         name:
           - autojump
           - cargo
+          - cmake
           - fd-find
           - fzf
+          - libgit2
           - neovim
           - nodejs
           - openssh
