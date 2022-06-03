@@ -23,6 +23,12 @@
         state: latest
         name: flatpak
 
+    - name: Ensure Fedora flathub is not in way
+      flatpak_remote:
+        name: fedora
+        state: absent
+      when: ansible_distribution == 'Fedora'
+
     - name: Ensure flathub is active
       flatpak_remote:
         name: flathub
