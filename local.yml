@@ -75,11 +75,9 @@
         state: present
         name:
           - autojump
-          - cargo
-          - cmake
+          - exa
           - fd-find
           - fzf
-          - libgit2
           - neovim
           - nodejs
           - openssh
@@ -172,6 +170,8 @@
       community.general.cargo:
         name: exa
         state: latest
+      ignore_errors: yes
+      when: ansible_distribution != "Fedora"
 
     - name: Ensure the vim autoload directory exists
       file:
