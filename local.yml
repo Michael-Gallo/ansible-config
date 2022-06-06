@@ -77,6 +77,7 @@
           - autojump
           - exa
           - fd-find
+          - ffmpeg # needed codecs for video
           - fzf
           - neovim
           - nodejs
@@ -84,6 +85,7 @@
           - python3-neovim
           - python3-pip
           - ripgrep
+          - tldr
           - yarnpkg
           - zsh
       when: ansible_distribution == "Fedora"
