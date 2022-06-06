@@ -183,13 +183,14 @@
     - name: ensure private env file exists
       file:
         path: "$XDG_CONFIG_HOME/zsh/private_env"
-          - "$XDG_CACHE_HOME/.cache/bwsession"
-        state: file
+        state: touch
+      changed_when: False
 
     - name: ensure bwsession file exists
       file:
-        path: "$XDG_CACHE_HOME/.cache/bwsession"
-        state: file
+        path: "$XDG_CACHE_HOME/bwsession"
+        state: touch
+      changed_when: False
 
 
     - name: download vim-plug
