@@ -79,6 +79,7 @@
           - fd-find
           - ffmpeg # needed codecs for video
           - fzf
+          - neofetch
           - neovim
           - nodejs
           - openssh
