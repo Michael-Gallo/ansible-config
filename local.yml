@@ -79,6 +79,9 @@
           - fd-find
           - ffmpeg # needed codecs for video
           - fzf
+          - libX11-devel
+          - libXinerama-devel
+          - libXft-devel
           - neofetch
           - neovim
           - nodejs
