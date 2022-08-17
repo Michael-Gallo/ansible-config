@@ -205,7 +205,8 @@
 
 # run roles
 
-- hosts: all
+- name: running dev role
+  hosts: all
   tags: dev
   become: true
   roles: 
