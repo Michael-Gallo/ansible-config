@@ -1,0 +1,5 @@
+- name : Ensuring user is in docker group
+  user :  
+    name: {{ user }}
+    append: yes
+    groups: docker
