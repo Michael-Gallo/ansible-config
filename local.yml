@@ -75,13 +75,16 @@
         state: present
         name:
           - autojump
+          - '@Development tools'
           - exa
           - fd-find
           - ffmpeg # needed codecs for video
           - fzf
+          - gcc-c++
           - libX11-devel
           - libXinerama-devel
           - libXft-devel
+          - meson
           - neofetch
           - neovim
           - nodejs
