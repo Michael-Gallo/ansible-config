@@ -78,9 +78,11 @@
           - '@Development tools'
           - exa
           - fd-find
+          - fira-code-fonts # For emacs
           - ffmpeg # needed codecs for video
           - fzf
           - gcc-c++
+          - gmime30-devel # Build requirement mu4e
           - libX11-devel
           - libXinerama-devel
           - libXft-devel
@@ -93,6 +95,7 @@
           - python3-pip
           - ripgrep
           - tldr
+          - xapian-core-devel # Build Requirement Mu4e
           - yarnpkg
           - zsh
       when: ansible_distribution == "Fedora"
