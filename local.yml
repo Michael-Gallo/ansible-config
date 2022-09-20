@@ -91,12 +91,15 @@
           - neovim
           - nodejs
           - openssh
+          - python3-devel # Necessary for uberzug
           - python3-neovim
           - python3-pip
           - ripgrep
           - tldr
           - xapian-core-devel # Build Requirement Mu4e
           - yarnpkg
+          - zathura
+          - zathura-pdf-mupdf
           - zsh
       when: ansible_distribution == "Fedora"
 
