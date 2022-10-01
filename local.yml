@@ -75,11 +75,15 @@
         state: present
         name:
           - autojump
+          - alacritty # Backup terminal
+          - btop
           - '@Development tools'
           - exa
           - fd-find
           - fira-code-fonts # For emacs
           - ffmpeg # needed codecs for video
+          - fontawesome-fonts
+          - fontawesome-fonts-web
           - fzf
           - gcc-c++
           - gmime30-devel # Build requirement mu4e
@@ -94,19 +98,26 @@
           - python3-devel # Necessary for uberzug
           - python3-neovim
           - python3-pip
+          - ranger
           - ripgrep
+          - rsync
+          - samba
+          - samba-client
+          - samba-common
           - tldr
           - xapian-core-devel # Build Requirement Mu4e
           - yarnpkg
           - zathura
-          - zathura-pdf-mupdf
+          - zathura-pdf-mupdf # Needed for pdf reading
           - zsh
       when: ansible_distribution == "Fedora"
 
     - name: Removing unwanted packages
       package:
         state: absent
-        name: audacity
+        name: 
+          - audacity
+          - jomolhari # Causes issues on Fedora
 
     - name: Installing fonts
       package:
