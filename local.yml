@@ -106,6 +106,7 @@
           - samba-common
           - tldr
           - xapian-core-devel # Build Requirement Mu4e
+          - xkill
           - yarnpkg
           - zathura
           - zathura-pdf-mupdf # Needed for pdf reading
