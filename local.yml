@@ -66,6 +66,7 @@
           - rsync
           - openssh
           - wget
+          - xdotool
           - yadm
           - zsh
       when: ansible_distribution == "Archlinux"
