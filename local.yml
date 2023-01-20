@@ -149,6 +149,7 @@
           - net.cozic.joplin_desktop
           - com.discordapp.Discord
           - com.skype.Client
+          - com.microsoft.Teams
         state: present
 
     - name: enable ssh
