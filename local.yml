@@ -1,53 +1,54 @@
 ---
 - hosts: all
+  name: All plays
   become: true
   pre_tasks:
-    - name: pre-run | update package cache (arch)
+    - name: Pre-run | update package cache (arch)
       tags: always
-      pacman: 
-        update_cache: yes
-        upgrade: yes
-      changed_when: False
+      community.general.pacman:
+        update_cache: true
+        upgrade: true
+      changed_when: false
       when: ansible_distribution == "Archlinux"
 
-    - name: pre-run | update package cache (debian, etc)
+    - name: Pre-run | update package cache (debian, etc)
       tags: always
-      apt: 
-        update_cache: yes
-      changed_when: False 
+      ansible.builtin.apt:
+        update_cache: true
+      changed_when: false
       when: ansible_distribution in ["Debian", "Ubuntu"]
 
     - name: Ensure flatpak is installed
       tags: always
-      package:
-        state: latest
+      ansible.builtin.package:
+        state: present
         name: flatpak
 
     - name: Ensure Fedora flathub is not in way
-      flatpak_remote:
+      community.general.flatpak_remote:
         name: fedora
         state: absent
       when: ansible_distribution == 'Fedora'
 
     - name: Ensure flathub is active
-      flatpak_remote:
+      community.general.flatpak_remote:
         name: flathub
         state: present
         flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 
     - name: Ensure RPM Fusion (Free) is active (fedora)
-      dnf:
-        name: 
-          - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
-          - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm"
+      ansible.builtin.dnf:
+        name:
+          - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+          - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm"
         state: present
-        disable_gpg_check: yes
+        disable_gpg_check: true
       when: ansible_distribution == 'Fedora'
 
   tasks:
     - name: Installing utility packages (Arch)
-      package:
-        state: latest
+      ansible.builtin.package:
+        state: present
         name:
           - arandr
           - btop
@@ -72,7 +73,7 @@
       when: ansible_distribution == "Archlinux"
 
     - name: Installing utility packages (Fedora)
-      package:
+      ansible.builtin.package:
         state: present
         name:
           - autojump
@@ -115,15 +116,15 @@
       when: ansible_distribution == "Fedora"
 
     - name: Removing unwanted packages
-      package:
+      ansible.builtin.package:
         state: absent
-        name: 
+        name:
           - audacity
           - jomolhari # Causes issues on Fedora
 
     - name: Installing fonts
-      package:
-        state: latest
+      ansible.builtin.package:
+        state: present
         name:
           - noto-fonts
           - ttf-dejavu
@@ -142,102 +143,96 @@
       when: ansible_distribution == "Archlinux"
 
 
-
     - name: Install flatpaks
-      flatpak:
-        name: 
+      community.general.flatpak:
+        name:
           - net.cozic.joplin_desktop
           - com.discordapp.Discord
           - com.skype.Client
           - com.microsoft.Teams
         state: present
 
-    - name: enable ssh
-      service:
+    - name: Enable ssh
+      ansible.builtin.service:
         name: sshd
         state: started
-        enabled: yes
-
-
+        enabled: true
 
 
 - name: Tasks that need to be ran as user
   hosts: all
-  become: no
+  become: false
   vars:
     user_home: "/home/{{ user }}"
     yadm_location: "{{ user_home }}/.ansible-project"
   tasks:
-    - name: change user shell to zsh 
-      become: yes
-      user:
+    - name: Change user shell to zsh
+      become: true
+      ansible.builtin.user:
         name: "{{ user }}"
         shell: /bin/zsh
 
     - name: Clone yadm (fedora)
-      git:
-        repo: https://github.com/TheLocehiliosan/yadm.git 
+      ansible.builtin.git:
+        repo: https://github.com/TheLocehiliosan/yadm.git
         dest: "{{ yadm_location }}"
-        update: yes
+        clone: true
+        version: abf6ea4b610f50f6bf6ff51
       when: ansible_distribution == "Fedora"
 
-    - name: put yadm in bin
+    - name: Put yadm in bin
       become: true
-      file:
+      ansible.builtin.file:
         src: "{{ yadm_location }}/yadm"
         dest: /bin/yadm
         state: link
       when: ansible_distribution == "Fedora"
 
-    - name: install pyenv
-      git:
+    - name: Install pyenv # noqa: latest
+      ansible.builtin.git:
         repo: https://github.com/pyenv/pyenv.git
         dest: ~/.pyenv
-        update: yes
-
-    - name: install exa
-      community.general.cargo:
-        name: exa
-        state: latest
-      ignore_errors: yes
-      when: ansible_distribution != "Fedora"
+        update: false
 
     - name: Ensure the vim autoload directory exists
-      file:
+      ansible.builtin.file:
         path: "$XDG_DATA_HOME/nvim/site/autoload/"
+        mode: 0755
         state: directory
 
-    - name: ensure private env file exists
-      file:
+    - name: Ensure private env file exists
+      ansible.builtin.file:
         path: "$XDG_CONFIG_HOME/zsh/private_env"
         state: touch
-      changed_when: False
+        owner: "{{ user }}"
+        mode: 0755
+      changed_when: false
 
-    - name: ensure bwsession file exists
-      file:
+    - name: Ensure bwsession file exists
+      ansible.builtin.file:
         path: "$XDG_CACHE_HOME/bwsession"
         state: touch
-      changed_when: False
+      changed_when: false
 
 
-    - name: download vim-plug
-      get_url:
+    - name: Download vim-plug
+      ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         dest: "$XDG_DATA_HOME/nvim/site/autoload/"
 
 
 # run roles
 
-- name: running dev role
+- name: Running dev role
   hosts: all
   tags: dev
   become: true
-  roles: 
+  roles:
     - dev
 
 
 - hosts: all
   tags: gamer
   become: true
-  roles: 
+  roles:
     - gamer
