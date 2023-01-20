@@ -1,0 +1,69 @@
+packages:
+  - ansible-lint
+  - arandr
+  - bemenu # Dmenu for wayland
+  - bitwarden
+  - borg # Needed for duplicati backup
+  - btop
+  - calibre # books
+  - chromium
+  - cmus # Music
+  - curl
+  - deluge # Torrents
+  - discord
+  - dunst # Notifications
+  - entr
+  - exa
+  - fd
+  - feh
+  - firefox
+  - flatpak
+  - fzf
+  - galculator
+  - git
+  - grimshot # maim for wayland
+  - htop
+  - kdeconnect
+  - neofetch
+  - neovim
+  - pcmanfm
+  - picom
+  - pinta
+  - python-pynvim
+  - ranger
+  - ripgrep
+  - rsync
+  - smplayer
+  - system-config-printer
+  - tldr
+  - openssh
+  - ueberzug # For ranger image previews
+  - unclutter
+  - wget
+  - xclip
+  - xdotool
+  - xsane
+  - xsel
+  - yadm
+  - zathura
+  - zathura-pdf-mupdf
+  - zsh
+
+fonts:
+  - cantarell-fonts
+  - noto-fonts
+  - ttf-dejavu
+  - ttf-fira-code
+  - ttf-fira-mono
+  - ttf-font-awesome
+  - ttf-hanazono
+  - ttf-joypixels
+  - ttf-liberation
+  - ttf-mononoki-nerd
+  - ttf-opensans
+  - ttf-ubuntu-font-family
+  - adobe-source-han-sans-cn-fonts
+  - adobe-source-han-sans-kr-fonts
+  - adobe-source-han-sans-jp-fonts
+  - otf-fira-mono
+  - otf-font-awesome

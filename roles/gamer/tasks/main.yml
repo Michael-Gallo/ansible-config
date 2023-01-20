@@ -1,6 +1,6 @@
 - name: Installing gaming related packages and drivers
-  package:
-    state: latest
+  ansible.builtin.package:
+    state: present
     name:
       # Applications
       - steam

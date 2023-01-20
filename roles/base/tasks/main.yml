@@ -1,0 +1,14 @@
+- name: Importing distribution specific vars
+  ansible.builtin.include_vars: "{{ ansible_distribution }}.yml"
+  tags: always
+
+- name: Install base packages
+  ansible.builtin.package:
+    state: present
+    name: "{{ packages }}"
+
+- name: Install fonts
+  ansible.builtin.package:
+    state: present
+    name: "{{ fonts }}"
+  # tasks

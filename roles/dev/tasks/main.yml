@@ -1,5 +1,5 @@
-- name : Ensuring user is in docker group
-  user :  
+- name: Ensuring user is in docker group
+  ansible.builtin.user:
     name: "{{ user }}"
-    append: yes
+    append: true
     groups: docker

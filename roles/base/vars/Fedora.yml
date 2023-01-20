@@ -1,0 +1,38 @@
+packages:
+  - autojump
+  - alacritty # Backup terminal
+  - btop
+  - "@Development tools"
+  - exa
+  - fd-find
+  - fira-code-fonts # For emacs
+  - ffmpeg # needed codecs for video
+  - fontawesome-fonts
+  - fontawesome-fonts-web
+  - fzf
+  - gcc-c++
+  - gmime30-devel # Build requirement mu4e
+  - libX11-devel
+  - libXinerama-devel
+  - libXft-devel
+  - meson
+  - neofetch
+  - neovim
+  - nodejs
+  - openssh
+  - python3-devel # Necessary for uberzug
+  - python3-neovim
+  - python3-pip
+  - ranger
+  - ripgrep
+  - rsync
+  - samba
+  - samba-client
+  - samba-common
+  - tldr
+  - xapian-core-devel # Build Requirement Mu4e
+  - xkill
+  - yarnpkg
+  - zathura
+  - zathura-pdf-mupdf # Needed for pdf reading
+  - zsh

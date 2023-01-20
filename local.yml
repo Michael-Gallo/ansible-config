@@ -45,103 +45,12 @@
         disable_gpg_check: true
       when: ansible_distribution == 'Fedora'
 
-  tasks:
-    - name: Installing utility packages (Arch)
-      ansible.builtin.package:
-        state: present
-        name:
-          - arandr
-          - btop
-          - chromium
-          - curl
-          - deluge
-          - fd
-          - flatpak
-          - git
-          - htop
-          - neofetch
-          - neovim
-          - python-pynvim
-          - ranger
-          - ripgrep
-          - rsync
-          - openssh
-          - wget
-          - xdotool
-          - yadm
-          - zsh
-      when: ansible_distribution == "Archlinux"
-
-    - name: Installing utility packages (Fedora)
-      ansible.builtin.package:
-        state: present
-        name:
-          - autojump
-          - alacritty # Backup terminal
-          - btop
-          - '@Development tools'
-          - exa
-          - fd-find
-          - fira-code-fonts # For emacs
-          - ffmpeg # needed codecs for video
-          - fontawesome-fonts
-          - fontawesome-fonts-web
-          - fzf
-          - gcc-c++
-          - gmime30-devel # Build requirement mu4e
-          - libX11-devel
-          - libXinerama-devel
-          - libXft-devel
-          - meson
-          - neofetch
-          - neovim
-          - nodejs
-          - openssh
-          - python3-devel # Necessary for uberzug
-          - python3-neovim
-          - python3-pip
-          - ranger
-          - ripgrep
-          - rsync
-          - samba
-          - samba-client
-          - samba-common
-          - tldr
-          - xapian-core-devel # Build Requirement Mu4e
-          - xkill
-          - yarnpkg
-          - zathura
-          - zathura-pdf-mupdf # Needed for pdf reading
-          - zsh
-      when: ansible_distribution == "Fedora"
-
     - name: Removing unwanted packages
       ansible.builtin.package:
         state: absent
         name:
           - audacity
           - jomolhari # Causes issues on Fedora
-
-    - name: Installing fonts
-      ansible.builtin.package:
-        state: present
-        name:
-          - noto-fonts
-          - ttf-dejavu
-          - ttf-fira-code
-          - ttf-fira-mono
-          - ttf-font-awesome
-          - ttf-joypixels
-          - ttf-liberation
-          - ttf-opensans
-          - ttf-ubuntu-font-family
-          - adobe-source-han-sans-cn-fonts
-          - adobe-source-han-sans-kr-fonts
-          - adobe-source-han-sans-jp-fonts
-          - otf-fira-mono
-          - otf-font-awesome
-      when: ansible_distribution == "Archlinux"
-
 
     - name: Install flatpaks
       community.general.flatpak:
@@ -212,6 +121,7 @@
       ansible.builtin.file:
         path: "$XDG_CACHE_HOME/bwsession"
         state: touch
+        mode: 0644
       changed_when: false
 
 
@@ -219,9 +129,17 @@
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         dest: "$XDG_DATA_HOME/nvim/site/autoload/"
+        mode: 0644
 
 
 # run roles
+- name: Running base role
+  hosts: all
+  tags: all
+  become: true
+  roles:
+    - base
+
 
 - name: Running dev role
   hosts: all
@@ -231,7 +149,8 @@
     - dev
 
 
-- hosts: all
+- name: Running gamer role
+  hosts: all
   tags: gamer
   become: true
   roles:
