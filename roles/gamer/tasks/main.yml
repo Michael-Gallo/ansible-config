@@ -55,3 +55,22 @@
       - lib32-vulkan-icd-loader
       - mesa
   when: ansible_distribution == "Archlinux"
+
+- name: Download the latest release of Glorious Eggroll Proton
+  become: false
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/latest
+    return_content: true
+  register: ge_data
+
+- name: Installing the Glorious Eggroll Proton release
+  become: false
+  vars:
+    ge_version: "{{ ge_data.json.tag_name }}"
+    proton_directory: "/home/{{ user }}/.steam/root/compatibilitytools.d/"
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: "{{ ge_data.json.assets.1.browser_download_url }}"
+    dest: "{{ proton_directory }}"
+    keep_newer: true
+    creates: "{{ proton_directory }}/{{ ge_version }}"
