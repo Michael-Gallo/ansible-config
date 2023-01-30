@@ -67,7 +67,7 @@
   become: false
   vars:
     ge_version: "{{ ge_data.json.tag_name }}"
-    proton_directory: "/home/{{ user }}/.steam/root/compatibilitytools.d/"
+    proton_directory: "{{ lookup('env', 'HOME') }}/.steam/root/compatibilitytools.d/"
   ansible.builtin.unarchive:
     remote_src: true
     src: "{{ ge_data.json.assets.1.browser_download_url }}"
