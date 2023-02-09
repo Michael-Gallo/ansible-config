@@ -34,4 +34,4 @@
     name: ansible configure
     user: ansib
     hour: "*/4"
-    job: ansible-pull -o -U  {{ playbook_location }}
+    job: ansible-pull -U  {{ playbook_location }}
