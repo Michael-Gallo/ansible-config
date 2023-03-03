@@ -106,7 +106,7 @@
     - name: Ensure the vim autoload directory exists
       ansible.builtin.file:
         path: "$XDG_DATA_HOME/nvim/site/autoload/"
-        mode: 0755
+        mode: "0755"
         state: directory
 
     - name: Ensure private env file exists
@@ -114,14 +114,14 @@
         path: "$XDG_CONFIG_HOME/zsh/private_env"
         state: touch
         owner: "{{ user }}"
-        mode: 0755
+        mode: "0755"
       changed_when: false
 
     - name: Ensure bwsession file exists
       ansible.builtin.file:
         path: "$XDG_CACHE_HOME/bwsession"
         state: touch
-        mode: 0644
+        mode: "0644"
       changed_when: false
 
 
@@ -129,7 +129,7 @@
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         dest: "$XDG_DATA_HOME/nvim/site/autoload/"
-        mode: 0644
+        mode: "0644"
 
 
 # run roles
