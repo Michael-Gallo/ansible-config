@@ -24,6 +24,8 @@ packages:
   - git
   - htop
   - kdeconnect
+  - lightdm
+  - lightdm-gtk-greeter
   - neofetch
   - neovim
   - pcmanfm

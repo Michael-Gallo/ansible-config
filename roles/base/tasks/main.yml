@@ -25,7 +25,7 @@
     dest: /etc/sudoers.d/ansib
     owner: root
     group: root
-    mode: 0440
+    mode: "0440"
 
 - name: Add cron job to ansible-pull
   vars:
@@ -35,3 +35,8 @@
     user: ansib
     hour: "*/4"
     job: ansible-pull -U  {{ playbook_location }}
+
+- name: Enable lightdm
+  ansible.builtin.systemd_service:
+    service: lightdm
+    enabled: true
