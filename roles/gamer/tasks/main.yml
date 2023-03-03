@@ -64,6 +64,7 @@
   register: ge_data
 
 - name: Ensure folder exists for GE Proton
+  become: false
   ansible.builtin.file:
     dest: "/home/{{ user }}/.steam/root/compatibilitytools.d"
     state: directory
