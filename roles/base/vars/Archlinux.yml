@@ -8,6 +8,7 @@ packages:
   - calibre # books
   - chromium
   - cmus # Music
+  - cronie # Needed for cronjobs
   - curl
   - deluge # Torrents
   - discord
