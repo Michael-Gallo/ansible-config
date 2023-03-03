@@ -96,3 +96,9 @@
       Icon=dwm
       Type=XSession
     mode: "0644"
+    force: false
+
+- name: Run Arch Tasks
+  ansible.builtin.include_tasks:
+    file: "arch.yml"
+  when: ansible_distribution == "Archlinux"

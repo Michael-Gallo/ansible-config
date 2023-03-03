@@ -1,0 +1,20 @@
+- name: Checking if paru exists
+  ansible.builtin.stat:
+    path: "/usr/bin/paru"
+  register: paru_status
+
+- name: Cloning Paru if necessary # noqa: latest
+  become: false
+  ansible.builtin.git:
+    dest: "/home/{{ user }}/paru"
+    repo: https://aur.archlinux.org/paru.git
+    version: HEAD
+  when: not paru_status.stat.exists
+
+- name: Installing Paru if necessary
+  become: false
+  ansible.builtin.command:
+    chdir: "/home/{{ user }}/paru"
+    cmd: "makepkg -si"
+  when: not paru_status.stat.exists
+  changed_when: paru_status.stat.exists
