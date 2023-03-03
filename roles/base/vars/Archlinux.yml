@@ -21,7 +21,6 @@ packages:
   - fzf
   - galculator
   - git
-  - grimshot # maim for wayland
   - htop
   - kdeconnect
   - neofetch
