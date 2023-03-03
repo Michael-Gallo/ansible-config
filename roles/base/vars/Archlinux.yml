@@ -28,6 +28,7 @@ packages:
   - lightdm-gtk-greeter
   - neofetch
   - neovim
+  - nitrogen
   - pcmanfm
   - picom
   - pinta
