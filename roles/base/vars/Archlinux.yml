@@ -36,6 +36,7 @@ packages:
   - ripgrep
   - rsync
   - smplayer
+  - sxhkd
   - system-config-printer
   - tldr
   - openssh
