@@ -63,6 +63,12 @@
     return_content: true
   register: ge_data
 
+- name: Ensure folder exists for GE Proton
+  ansible.builtin.file:
+    dest: "/home/{{ user }}/.steam/root/compatibilitytools.d"
+    state: directory
+    mode: "0755"
+
 - name: Installing the Glorious Eggroll Proton release
   become: false
   vars:
