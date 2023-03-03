@@ -34,6 +34,7 @@ packages:
   - python-pynvim
   - ranger
   - ripgrep
+  - rust # Needed for Paru
   - rsync
   - smplayer
   - sxhkd
