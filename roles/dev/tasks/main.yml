@@ -1,3 +1,8 @@
+- name: Ensuring docker group exists
+  ansible.builtin.group:
+    name: docker
+    state: present
+    gid: 1750
 - name: Ensuring user is in docker group
   ansible.builtin.user:
     name: "{{ user }}"
