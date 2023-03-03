@@ -40,3 +40,46 @@
   ansible.builtin.systemd_service:
     service: lightdm
     enabled: true
+
+# Clone Suckless Utils if needed
+- name: Check if DWM already cloned
+  ansible.builtin.stat:
+    path: "$HOME/dwm"
+  register: dwm_path
+
+- name: Clone dwm build # noqa: latest
+  ansible.builtin.git:
+    repo: https://gitlab.com/michaelagallo95/dwm.git
+    dest: $HOME/dwm
+    clone: true
+    update: false
+    version: HEAD
+  when: not dwm_path.stat.exists
+
+- name: Check if Dmenu already cloned
+  ansible.builtin.stat:
+    path: "$HOME/dmenu"
+  register: dmenu_path
+
+- name: Clone dmenu build # noqa: latest
+  ansible.builtin.git:
+    repo: https://gitlab.com/michaelagallo95/dmenu.git
+    dest: $HOME/dmenu
+    clone: true
+    update: false
+    version: HEAD
+  when: not dmenu_path.stat.exists
+
+- name: Check if st already cloned
+  ansible.builtin.stat:
+    path: "$HOME/st"
+  register: st_path
+
+- name: Clone st build # noqa: latest
+  ansible.builtin.git:
+    repo: https://github.com/LukeSmithxyz/st.git
+    dest: $HOME/st
+    clone: true
+    update: false
+    version: HEAD
+  when: not st_path.stat.exists
