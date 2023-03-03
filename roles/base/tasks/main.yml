@@ -83,3 +83,16 @@
     update: false
     version: HEAD
   when: not st_path.stat.exists
+
+- name: Create xsession entry for dwm
+  ansible.builtin.copy:
+    dest: /usr/share/xsessions/dwm.desktop
+    content: |
+      [Desktop Entry]
+      Encoding=UTF-8
+      Name=dwm
+      Comment=Dynamic window manager
+      Exec=dwm
+      Icon=dwm
+      Type=XSession
+    mode: "0644"
