@@ -26,6 +26,7 @@ packages:
   - kdeconnect
   - lightdm
   - lightdm-gtk-greeter
+  - maim # Screnshots
   - neofetch
   - neovim
   - nitrogen
