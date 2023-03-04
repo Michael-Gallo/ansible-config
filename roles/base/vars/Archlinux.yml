@@ -19,6 +19,7 @@ packages:
   - feh
   - firefox
   - flatpak
+  - fuse2
   - fzf
   - galculator
   - git
@@ -30,10 +31,11 @@ packages:
   - neofetch
   - neovim
   - nitrogen
-  - pamixer # Audio control
+  - pamixer
   - pcmanfm
   - picom
   - pinta
+  - pulsemixer
   - python-pynvim
   - ranger
   - ripgrep
@@ -49,6 +51,7 @@ packages:
   - wget
   - xclip
   - xdotool
+  - xorg-xev # for keycodes
   - xsane
   - xsel
   - yadm
