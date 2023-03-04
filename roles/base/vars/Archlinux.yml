@@ -30,6 +30,7 @@ packages:
   - neofetch
   - neovim
   - nitrogen
+  - pamixer # Audio control
   - pcmanfm
   - picom
   - pinta
