@@ -1,1 +1,1 @@
-velociraptor ALL=(ALL) NOPASSWD: ALL
+ansib ALL=(ALL) NOPASSWD: ALL
