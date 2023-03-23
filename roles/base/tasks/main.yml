@@ -14,28 +14,6 @@
     name: "{{ fonts }}"
   when: fonts is defined
 
-- name: Create an ansible user
-  ansible.builtin.user:
-    name: ansib
-    system: true
-
-- name: Set up sudo for ansible user
-  ansible.builtin.copy:
-    src: files/sudoer_ansib
-    dest: /etc/sudoers.d/ansib
-    owner: root
-    group: root
-    mode: "0440"
-
-- name: Add cron job to ansible-pull
-  vars:
-    playbook_location: https://gitlab.com/michaelagallo95/ansible-config
-  ansible.builtin.cron:
-    name: ansible configure
-    user: ansib
-    hour: "*/4"
-    job: ansible-pull -U  {{ playbook_location }}
-
 - name: Enable lightdm
   ansible.builtin.systemd_service:
     service: lightdm
