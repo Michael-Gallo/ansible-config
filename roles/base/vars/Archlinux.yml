@@ -46,7 +46,6 @@ packages:
   - system-config-printer
   - tldr
   - openssh
-  - ueberzug # For ranger image previews
   - unclutter
   - wget
   - xclip
