@@ -44,6 +44,7 @@ packages:
   - smplayer
   - sxhkd
   - system-config-printer
+  - terraform
   - tldr
   - openssh
   - unclutter
