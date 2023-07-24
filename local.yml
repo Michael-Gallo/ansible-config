@@ -70,7 +70,7 @@
 
 - name: Tasks that need to be ran as user
   hosts: all
-  become: false
+  become_user: "{{ user }}"
   vars:
     user_home: "/home/{{ user }}"
     yadm_location: "{{ user_home }}/.ansible-project"
