@@ -18,3 +18,10 @@
     cmd: "makepkg -si"
   when: not paru_status.stat.exists
   changed_when: paru_status.stat.exists
+
+
+- name: Installing wayland packages
+  ansible.builtin.package:
+    state: present
+    name: "{{ wayland_packages }}"
+  when: wayland_packages is defined

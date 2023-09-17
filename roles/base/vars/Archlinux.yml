@@ -1,8 +1,6 @@
 packages:
   - ansible-lint
-  - arandr
   - bemenu # Dmenu for wayland
-  - bitwarden
   - borg # Needed for duplicati backup
   - btop
   - calibre # books
@@ -13,6 +11,7 @@ packages:
   - deluge # Torrents
   - discord
   - dunst # Notifications
+  - dragon-drop
   - entr
   - exa
   - fd
@@ -27,33 +26,22 @@ packages:
   - kdeconnect
   - lightdm
   - lightdm-gtk-greeter
-  - maim # Screnshots
   - neofetch
   - neovim
-  - nitrogen
   - pamixer
   - pcmanfm
-  - picom
   - pinta
-  - pulsemixer
   - python-pynvim
   - ranger
   - ripgrep
-  - rust # Needed for Paru
+  - rustup # Needed for Paru
   - rsync
   - smplayer
-  - sxhkd
   - system-config-printer
   - terraform
   - tldr
   - openssh
-  - unclutter
   - wget
-  - xclip
-  - xdotool
-  - xorg-xev # for keycodes
-  - xsane
-  - xsel
   - yadm
   - zathura
   - zathura-pdf-mupdf
@@ -77,3 +65,29 @@ fonts:
   - adobe-source-han-sans-jp-fonts
   - otf-fira-mono
   - otf-font-awesome
+
+
+xorg_packages:
+  - arandr
+  - sxhkd
+  - xorg-xev # for keycodes
+  - xclip
+  - xdotool
+  - xsane
+  - nitrogen
+  - xsel
+  - unclutter
+  - picom
+  - maim # Screnshots
+  - bitwarden
+
+wayland_packages:
+  - bemenu
+  - wl-clipboard
+  - grim
+  - foot
+  - wayland
+  - wayland-protocols
+  - wayland-utils
+  - wtype # Xdotool equivalent
+  - wlroots
