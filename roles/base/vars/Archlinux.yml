@@ -1,9 +1,8 @@
-packages:
+base_essential_packages:
   - ansible-lint
   - bemenu # Dmenu for wayland
   - borg # Needed for duplicati backup
   - btop
-  - calibre # books
   - chromium
   - cmus # Music
   - cronie # Needed for cronjobs
@@ -11,28 +10,22 @@ packages:
   - deluge # Torrents
   - discord
   - dunst # Notifications
-  - dragon-drop
-  - entr
   - exa
   - fd
   - feh
   - firefox
   - flatpak
   - fzf
-  - galculator
   - git
   - btop
-  - kdeconnect
   - neofetch
   - neovim
   - pamixer
   - pcmanfm
   - python-pynvim
-  - ranger
   - ripgrep
   - rustup # Needed for Paru
   - rsync
-  - smplayer
   - system-config-printer
   - terraform
   - tldr
@@ -43,7 +36,17 @@ packages:
   - zathura-pdf-mupdf
   - zsh
 
-fonts:
+
+# failure to install these packages will not stop the playbook
+base_non_essential_packages:
+  - ranger
+  - smplayer
+  - kdeconnect
+  - galculator
+  - entr
+  - calibre # books
+
+base_fonts:
   - cantarell-fonts
   - noto-fonts
   - ttf-dejavu
@@ -63,7 +66,7 @@ fonts:
   - otf-font-awesome
 
 
-xorg_packages:
+base_xorg_packages:
   - arandr
   - sxhkd
   - xorg-xev # for keycodes
@@ -77,7 +80,7 @@ xorg_packages:
   - maim # Screnshots
   - bitwarden
 
-wayland_packages:
+base_wayland_packages:
   - bemenu
   - wl-clipboard
   - grim

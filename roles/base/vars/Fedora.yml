@@ -1,4 +1,4 @@
-packages:
+base_essential_packages:
   - autojump
   - alacritty # Backup terminal
   - btop

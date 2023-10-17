@@ -2,16 +2,25 @@
   ansible.builtin.include_vars: "{{ ansible_distribution }}.yml"
   tags: always
 
-- name: Install base packages
+- name: Install essential packages
   ansible.builtin.package:
     state: present
-    name: "{{ packages }}"
-  when: packages is defined
+    name: "{{ base_essential_packages }}"
+  when: base_essential_packages is defined
+
+- name: Install non-essential packages
+  ansible.builtin.package:
+    state: present
+    name: "{{ base_non_essential_packages }}"
+  when: base_non_essential_packages is defined
+  tags:
+    - skip_ansible_lint
+  ignore_errors: true # noqa
 
 - name: Install fonts
   ansible.builtin.package:
     state: present
-    name: "{{ fonts }}"
+    name: "{{ base_fonts }}"
   when: fonts is defined
 
 # - name: Enable lightdm
